@@ -16,12 +16,12 @@ def center_window(win):
 
 # Main program
 a = Tk()
-a.geometry("900x600")
+a.geometry("900x700")
 a.resizable(0, 0)
 
 center_window(a)
 
-frame3 = Frame(a, bg="gray", highlightbackground="black", highlightthickness=1, bd=10, width=300, height=600)
+frame3 = Frame(a, bg="gray", highlightbackground="black", highlightthickness=1, bd=10, width=300, height=700)
 frame3.place(x=0, y=0)
 
 button1 = Button(frame3, text="Cluster Graph General", bg="white", fg="black", command=lambda: display_cluster_graph(X, clusters))
@@ -31,7 +31,7 @@ frame4_frame = Frame(a, bg="light blue")
 frame4_frame.place(x=300, y=0, width=600, height=400, anchor=NW)
 
 frame5_frame = Frame(a, bg="light blue", highlightthickness=1, bd=10)
-frame5_frame.place(x=300, y=400, width=600, height=200, anchor=NW)
+frame5_frame.place(x=300, y=400, width=600, height=300, anchor=NW)
 
 label_attention = Label(frame5_frame, text="Attention Span:", bg="gray", fg="black")
 label_attention.place(relx=0.5, rely=0.1, anchor=N)
@@ -46,8 +46,8 @@ X = data[['Intell Ag Attention Span', 'Chem Attention Span', 'Ethics Attention S
 clusters = cluster_students(X)
 
 for i, student_no in enumerate(students.keys()):
-    row = i // 6  # Calculate the row based on the index
-    col = i % 6   # Calculate the column based on the index
+    row = i // 6
+    col = i % 6
 
     # Create circular button
     canvas = Canvas(frame4_frame, width=70, height=70, bg="light blue", highlightthickness=0)

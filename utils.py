@@ -3,6 +3,7 @@ import matplotlib.pyplot as plt
 from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
 import pandas as pd
 from tkinter import *
+from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
 
 def read_students_from_csv(filename):
     students = {}
@@ -36,13 +37,6 @@ def show_student_info(student_no, students, info_label, frame5_frame):
     info_text = f"Student No.: {student_no}\nAge: {info['age']}\nGender: {info['gender']}\nYear Level: {info['year_level']}\nStatus: {info['status']}"
     info_label.config(text=info_text)
 
-    if info['status'] == 'Listening':
-        circle_color = 'green'
-    elif info['status'] == 'Sleepy':
-        circle_color = 'blue'
-    else:
-        circle_color = 'red'  # Default color
-
     # Load the data from the CSV file
     data = pd.read_csv('SDF.csv')
 
@@ -59,6 +53,9 @@ def show_student_info(student_no, students, info_label, frame5_frame):
     ax.set_xlabel('Subjects')
     ax.set_ylabel('Attention Span')
     ax.set_title(f'Attention Span for Student {student_no}')
+
+    # Rotate x-axis labels to prevent overlapping
+    plt.xticks(rotation=5, fontsize=6)
 
     # Clear previous plot from frame5
     for widget in frame5_frame.winfo_children():

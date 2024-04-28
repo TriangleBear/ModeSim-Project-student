@@ -17,10 +17,9 @@ def cluster_students(X):
 
     return labels
 
+import matplotlib.pyplot as plt
+
 def display_cluster_graph(X, clusters):
     plt.scatter(X['Intell Ag Attention Span'], X['Chem Attention Span'], c=clusters)
-    plt.xlabel('Intell Ag Attention Span')
-    plt.ylabel('Chem Attention Span')
     plt.title('Cluster Graph')
-    plt.legend()
     plt.show()
