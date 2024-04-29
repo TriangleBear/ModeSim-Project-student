@@ -1,6 +1,5 @@
 import csv
 import matplotlib.pyplot as plt
-from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
 import pandas as pd
 from tkinter import *
 from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
@@ -35,7 +34,7 @@ def show_student_info(student_no, students, info_label, frame5_frame):
     """
     info = students[student_no]
     info_text = f"Student No.: {student_no}\nAge: {info['age']}\nGender: {info['gender']}\nYear Level: {info['year_level']}\nStatus: {info['status']}"
-    info_label.config(text=info_text)
+    info_label.config(text=info_text, font=("Arial", 16)) # Increase the font size to 16
 
     # Load the data from the CSV file
     data = pd.read_csv('SDF.csv')
@@ -47,15 +46,17 @@ def show_student_info(student_no, students, info_label, frame5_frame):
     attention_span_columns = ['Intell Ag Attention Span', 'Chem Attention Span', 'Ethics Attention Span', 'Info Assurance Attention Span']
     attention_span_data = student_data[attention_span_columns].squeeze().values
 
-    # Create the plot with a smaller size
-    fig, ax = plt.subplots(figsize=(3, 2))
-    ax.bar(attention_span_columns, attention_span_data, color='skyblue')
+    # Create the plot with a larger size for better visibility and adjust the bar width
+    fig, ax = plt.subplots(figsize=(10, 6))  # Adjust the figure size as needed
+    bar_width = 0.35  # Adjust the width of the bars to prevent them from being too thick
+    x = range(len(attention_span_columns))  # Set unique x-coordinates for the bars
+
+    ax.bar(x, attention_span_data, width=bar_width, color='skyblue', align='center')
     ax.set_xlabel('Subjects')
     ax.set_ylabel('Attention Span')
     ax.set_title(f'Attention Span for Student {student_no}')
-
-    # Rotate x-axis labels to prevent overlapping
-    plt.xticks(rotation=5, fontsize=6)
+    ax.set_xticks(x)  # Set the x-ticks to be where the bars are
+    ax.set_xticklabels(attention_span_columns, rotation=5, ha='center')  # Rotate the labels for readability
 
     # Clear previous plot from frame5
     for widget in frame5_frame.winfo_children():
