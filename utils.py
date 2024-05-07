@@ -3,6 +3,7 @@ import matplotlib.pyplot as plt
 import pandas as pd
 from tkinter import *
 from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
+import os
 
 def read_students_from_csv(filename):
     students = {}
@@ -37,7 +38,7 @@ def show_student_info(student_no, students, info_label, frame5_frame):
     info_label.config(text=info_text, font=("Arial", 16)) # Increase the font size to 16
 
     # Load the data from the CSV file
-    data = pd.read_csv('SDF.csv')
+    data = os.path.join(os.path.dirname(__file__), 'SDF.csv')
 
     # Filter data for the selected student
     student_data = data[data['Student no.'] == student_no]
