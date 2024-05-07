@@ -1,6 +1,7 @@
 from tkinter import *
 from utils import read_students_from_csv, show_student_info
 from clustering import cluster_students, display_cluster_graph
+import pandas as pd
 from tkinter import ttk
 import os
 
@@ -42,12 +43,12 @@ frame5_frame.place(x=450, y=400, width=900, height=300, anchor=N)
 label_attention = Label(frame5_frame, text="Attention Span:", bg="gray", fg="black")
 label_attention.place(relx=0.5, rely=0.1, anchor=N)
 
-students = read_students_from_csv('SDF.csv')
+students = read_students_from_csv(os.path.join(os.path.dirname(__file__), 'SDF.csv'))
 
 info_label = Label(frame3, text="", bg="gray", fg="black", justify=LEFT)
 info_label.place(relx=0.5, rely=0.5, anchor=CENTER)
 
-data = os.path.join(os.path.dirname(__file__), 'SDF.csv')
+data = pd.read_csv(os.path.join(os.path.dirname(__file__), 'SDF.csv'))
 X = data[['Intell Ag Attention Span', 'Chem Attention Span', 'Ethics Attention Span', 'Info Assurance Attention Span']]
 clusters = cluster_students(X)
 
