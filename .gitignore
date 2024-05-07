@@ -1,2 +1,12 @@
 
 /__pycache__
+*.pyc
+*.toc
+*.zip
+*.txt
+*.pkg
+*.pyz
+*.html
+*.exe
+*.spec
+*.csv
